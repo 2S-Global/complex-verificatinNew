@@ -4,10 +4,9 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
 
-  const router=useRouter();
-  const handleLogin = () => {
-    router.push("/dashboard"); // Navigate to dashboard
-    router.refresh(); // Force a refresh to reload JavaScript
+  const handleLogin = (event) => {
+    event.preventDefault(); 
+    router.push("/dashboard"); 
   };
     return (
       <main className="container">
@@ -31,7 +30,7 @@ export default function LoginPage() {
                     <form className="row g-3 needs-validation" onSubmit={handleLogin} noValidate>
                       <div className="col-12">
                         <label htmlFor="yourUsername" className="form-label">
-                          Username 22
+                          Username
                         </label>
                         <div className="input-group has-validation">
                           <span className="input-group-text" id="inputGroupPrepend">@</span>
