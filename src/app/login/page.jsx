@@ -1,4 +1,14 @@
+"use client";
+import { useRouter } from "next/router";
+
+
 export default function LoginPage() {
+
+  const router=useRouter();
+  const handleLogin = () => {
+    router.push("/dashboard"); // Navigate to dashboard
+    router.refresh(); // Force a refresh to reload JavaScript
+  };
     return (
       <main className="container">
         <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -17,7 +27,7 @@ export default function LoginPage() {
                       <h5 className="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                       <p className="text-center small">Enter your username & password to login</p>
                     </div>
-                    <form className="row g-3 needs-validation" noValidate>
+                    <form className="row g-3 needs-validation" onSubmit={handleLogin} noValidate>
                       <div className="col-12">
                         <label htmlFor="yourUsername" className="form-label">
                           Username
