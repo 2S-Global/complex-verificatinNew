@@ -24,7 +24,7 @@ export default function Sidebar() {
     {/* End Components Nav */}
     <li className="nav-item">
       <a className="nav-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#" >
-        <i className="bi bi-menu-button-wide" /><span>Domestic Users</span><i className="bi bi-chevron-down ms-auto" /></a>
+        <i className="bi bi-menu-button-wide" /><span>Domestic Helpers</span><i className="bi bi-chevron-down ms-auto" /></a>
       <ul id="components-nav3" className="nav-content collapse " data-bs-parent="#sidebar-nav" >
         <li><Link href="./adddomesticuser"><i className="bi bi-circle" /><span>Add users</span></Link></li>
         <li><Link href="./lisdomesticusers"><i className="bi bi-circle" /><span>List Users</span></Link>
@@ -34,10 +34,10 @@ export default function Sidebar() {
     {/* End Forms Nav */}
     <li className="nav-item">
       <a className="nav-link collapsed" data-bs-target="#components-nav1" data-bs-toggle="collapse" href="#" >
-        <i className="bi bi-menu-button-wide" /><span>Verify Rent Agreement</span><i className="bi bi-chevron-down ms-auto" /></a>
+        <i className="bi bi-menu-button-wide" /><span>Verify Tenants</span><i className="bi bi-chevron-down ms-auto" /></a>
       <ul id="components-nav1" className="nav-content collapse " data-bs-parent="#sidebar-nav" >
-        <li><Link href="#"><i className="bi bi-circle" /><span>Add Details</span></Link></li>
-        <li><Link href="#"><i className="bi bi-circle" /><span>List Details</span></Link>
+        <li><Link href="#"><i className="bi bi-circle" /><span>Add Tenants</span></Link></li>
+        <li><Link href="#"><i className="bi bi-circle" /><span>List Tenants</span></Link>
         </li>
       </ul>
     </li>
