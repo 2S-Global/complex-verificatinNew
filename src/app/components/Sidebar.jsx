@@ -50,7 +50,7 @@ export default function Sidebar() {
         <li><Link href="./changepassword"><i className="bi bi-circle" /><span>Change Password</span></Link></li>
         <li><Link href="./changeemail"><i className="bi bi-circle" /><span>Change Email</span></Link></li>
         <li><Link href="./changeprofileimage"><i className="bi bi-circle" /><span>Change Profile Image</span></Link></li>
-        <li><Link href="#"><i className="bi bi-circle" /><span>Logout</span></Link></li>
+        <li><Link href="/login"><i className="bi bi-circle" /><span>Logout</span></Link></li>
       </ul>
     </li>    
   </ul>
