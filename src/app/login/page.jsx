@@ -21,6 +21,7 @@ export default function LoginPage() {
                     <span className="d-none d-lg-block">NiceAdmin</span>
                   </a>
                 </div>
+
                 <div className="card mb-3">
                   <div className="card-body">
                     <div className="pt-4 pb-2">
@@ -30,7 +31,7 @@ export default function LoginPage() {
                     <form className="row g-3 needs-validation" onSubmit={handleLogin} noValidate>
                       <div className="col-12">
                         <label htmlFor="yourUsername" className="form-label">
-                          Username
+                          Username 22
                         </label>
                         <div className="input-group has-validation">
                           <span className="input-group-text" id="inputGroupPrepend">@</span>
