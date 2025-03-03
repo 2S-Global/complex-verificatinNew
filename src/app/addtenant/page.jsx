@@ -30,8 +30,8 @@ export default function AddDomesticUser() {
       ],
     },
     { name: "name", label: "Name of Owner", required: true, type: "text", sm: 6 },
-    { type: "caption", text: "ATTENDANT", sm: 12 },
-    { name: "a_name", label: "Attendant Name", required: true, type: "text", sm: 4 },
+    { type: "caption", text: "Tenant", sm: 12 },
+    { name: "a_name", label: "Tenant Name", required: true, type: "text", sm: 4 },
     
     { name: "gender", label: "Gender", type: "radio", required: true, sm: 4, options: [
       { value: "male", label: "Male" },
@@ -74,7 +74,7 @@ export default function AddDomesticUser() {
     <div className="col-lg-12">
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">Add Domestic User</h5>
+          <h5 className="card-title">Add Tenant</h5>
           
           {!isClient ? (
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100px" }}>
