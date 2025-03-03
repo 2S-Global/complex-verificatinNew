@@ -30,7 +30,7 @@ export default function AddDomesticUser() {
       ],
     },
     { name: "name", label: "Name of Owner", required: true, type: "text", sm: 6 },
-    { type: "caption", text: "Tenant", sm: 12 },
+    { type: "caption", text: "TENANT", sm: 12 },
     { name: "a_name", label: "Tenant Name", required: true, type: "text", sm: 4 },
     
     { name: "gender", label: "Gender", type: "radio", required: true, sm: 4, options: [
