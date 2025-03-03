@@ -41,11 +41,13 @@ const DynamicForm = ({ fields = [], onSubmit , submitButtonText = "Submit"  }) =
   // ✅ Prevent rendering until `initialValues` is set
   if (!initialValues) return <p>Loading form...</p>;
 
-  const validationSchema = Yup.object(
-    fields.reduce((schema, field) => {
+  const validationSchema = Yup.object({
+    ...fields.reduce((schema, field) => {
       if (field.required) {
         if (field.type === 'email') {
-          schema[field.name] = Yup.string().email('Invalid email').required('This field is required');
+          schema[field.name] = Yup.string()
+            .email('Invalid email')
+            .required('This field is required');
         } else if (field.type === 'file') {
           schema[field.name] = Yup.mixed().required('File is required');
         } else if (field.type === 'checkbox') {
@@ -57,8 +59,17 @@ const DynamicForm = ({ fields = [], onSubmit , submitButtonText = "Submit"  }) =
         }
       }
       return schema;
-    }, {})
-  );
+    }, {}),
+    // ✅ Ensure these fields exist in the schema even if not in `fields`
+    aadhaar_no: Yup.string(),
+    epic_no: Yup.string(),
+    dl_no: Yup.string(),
+  }).test(
+    'at-least-one-required',
+    'At least one of Aadhaar Number, EPIC Number, or DL Number is required',
+    (values) => values.aadhaar_no?.trim() || values.epic_no?.trim() || values.dl_no?.trim());
+  
+
 
   const getLabel = (field) => (
     <>
@@ -67,7 +78,17 @@ const DynamicForm = ({ fields = [], onSubmit , submitButtonText = "Submit"  }) =
   );
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
+    <Formik initialValues={initialValues} validationSchema={validationSchema}  onSubmit={(values, { setErrors }) => {
+      if (!values.aadhaar_no?.trim() && !values.epic_no?.trim() && !values.dl_no?.trim()) {
+        setErrors({
+          aadhaar_no: "At least one of Aadhaar Number, EPIC Number, or DL Number is required",
+          epic_no: "At least one of Aadhaar Number, EPIC Number, or DL Number is required",
+          dl_no: "At least one of Aadhaar Number, EPIC Number, or DL Number is required",
+        });
+      } else {
+        onSubmit(values);
+      }
+    }} >
       {({ values, handleChange, setFieldValue, setFieldTouched, errors, touched }) => (
         <Form noValidate>
           <Grid container spacing={2}>
@@ -272,59 +293,77 @@ if (field.type === 'radio') {
               }
 
               // ✅ Render File Upload
-              if (field.type === 'file') {
-                return (
-                  <Grid item xs={12} sm={columnSize} key={field.name}>
-                    <FormControl fullWidth>
-                      <FormLabel sx={{ fontSize: "0.85rem" }}>{field.label}</FormLabel> {/* Reduce label size */}
-                      <TextField
-                        fullWidth
-                        variant="outlined"
-                        value={values[field.name] ? values[field.name].name : ''}
-                        placeholder="No file selected"
-                        error={!!errors[field.name] && touched[field.name]}
-                        helperText={touched[field.name] && errors[field.name]}
-                        InputProps={{
-                          readOnly: true,
-                          endAdornment: (
-                            <Button
-                              variant="contained"
-                              component="label"
-                              color="primary"
-                              sx={{
-                                fontSize: "0.75rem", // Smaller button text
-                                padding: "4px 8px", // Smaller padding
-                                minWidth: "70px", // Reduce button width
-                              }}
-                            >
-                              Upload
-                              <input
-                                type="file"
-                                name={field.name}
-                                hidden
-                                onChange={(event) => {
-                                  setFieldValue(field.name, event.currentTarget.files[0]);
-                                }}
-                              />
-                            </Button>
-                          ),
-                        }}
-                        sx={{
-                          fontSize: "0.85rem", // Reduce input text size
-                          '& .MuiOutlinedInput-root': {
-                            height: "48px", // Reduce input height
-                            fontSize: "0.85rem", // Reduce font size inside input
-                            padding: "4px 8px", // Adjust padding
-                          },
-                          '& .MuiFormHelperText-root': {
-                            fontSize: "0.75rem", // Reduce helper text size
-                          },
-                        }}
-                      />
-                    </FormControl>
-                  </Grid>
-                );
-              }
+          // ✅ Render File Upload
+if (field.type === 'file') {
+  return (
+    <Grid item xs={12} sm={columnSize} key={field.name}>
+      <FormControl fullWidth>
+        <FormLabel sx={{ fontSize: "0.85rem" }}>{field.label}</FormLabel> 
+
+        <TextField
+          fullWidth
+          variant="outlined"
+          value={values[field.name] ? values[field.name].name : ''}
+          placeholder="No file selected"
+          error={!!errors[field.name] && touched[field.name]}
+          helperText={touched[field.name] && errors[field.name]}
+          InputProps={{
+            readOnly: true,
+            endAdornment: (
+              <Button
+                variant="contained"
+                component="label"
+                color="primary"
+                sx={{ fontSize: "0.75rem", padding: "4px 8px", minWidth: "70px" }}
+              >
+                Upload
+                <input
+                  type="file"
+                  name={field.name}
+                  hidden
+                  onChange={(event) => setFieldValue(field.name, event.currentTarget.files[0])}
+                />
+              </Button>
+            ),
+          }}
+          sx={{
+            fontSize: "0.85rem",
+            '& .MuiOutlinedInput-root': { height: "48px", fontSize: "0.85rem", padding: "4px 8px" },
+            '& .MuiFormHelperText-root': { fontSize: "0.75rem" },
+          }}
+        />
+
+        {/* ✅ Show "View Excel Demo File" Button if demoFileUrl Exists */}
+        {field.demoFileUrl && (
+  <div style={{ textAlign: "right" }}> {/* ✅ Align content to the right */}
+    <a
+      href={field.demoFileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: "inline-block",
+        marginTop: "8px",
+        fontSize: "0.75rem",
+        width: "30%",
+        padding: "4px 8px",
+        color: "#1976d2",
+        textDecoration: "none",
+        textAlign: "right",
+        borderRadius: "4px",
+     
+      }}
+    >
+      Download Excel
+    </a>
+  </div>
+)}
+
+
+      </FormControl>
+    </Grid>
+  );
+}
+
               
 
               return null;

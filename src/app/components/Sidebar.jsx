@@ -36,8 +36,8 @@ export default function Sidebar() {
       <a className="nav-link collapsed" data-bs-target="#components-nav1" data-bs-toggle="collapse" href="#" >
         <i className="bi bi-menu-button-wide" /><span>Verify Tenants</span><i className="bi bi-chevron-down ms-auto" /></a>
       <ul id="components-nav1" className="nav-content collapse " data-bs-parent="#sidebar-nav" >
-        <li><Link href="#"><i className="bi bi-circle" /><span>Add Tenants</span></Link></li>
-        <li><Link href="#"><i className="bi bi-circle" /><span>List Tenants</span></Link>
+        <li><Link href="./addtenant"><i className="bi bi-circle" /><span>Add Tenants</span></Link></li>
+        <li><Link href="./listtenant"><i className="bi bi-circle" /><span>List Tenants</span></Link>
         </li>
       </ul>
     </li>
