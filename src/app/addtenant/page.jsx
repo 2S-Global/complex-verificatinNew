@@ -52,15 +52,15 @@ export default function AddDomesticUser() {
     { type: "caption", text: "AADHAAR", sm: 12 },
     { name: "aadhaar_no", label: "Aadhaar Number",  type: "text", sm: 4 },
     { name: "aadhaar_name", label: "Name of the Aadhaar Holder",  type: "text", sm: 4 },
-    { name: "a_image",  type: "file", sm: 4  },
+    { name: "aadhaar_image",  type: "file", sm: 4  },
     { type: "caption", text: "EPIC", sm: 12 },
     { name: "epic_no", label: "Epic Number",  type: "text", sm: 4 },
     { name: "epic_name", label: "Name of the Epic Holder",  type: "text", sm: 4 },
-    { name: "e_image",  type: "file", sm: 4  },
+    { name: "epic_image",  type: "file", sm: 4  },
     { type: "caption", text: "DRIVING LICENSE", sm: 12 },
     { name: "dl_no", label: "DL No",  type: "text", sm: 4 },
-    { name: "DL_name", label: "Name of the DL Holder",  type: "text", sm: 4 },
-    { name: "d_image",  type: "file", sm: 4  },
+    { name: "dl_name", label: "Name of the DL Holder",  type: "text", sm: 4 },
+    { name: "dl_image",  type: "file", sm: 4  },
 
   ];
 

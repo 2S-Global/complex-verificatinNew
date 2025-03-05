@@ -26,7 +26,7 @@ export default function AddOwners() {
   
     const fields = [
       
-      { name: "d_image",  type: "file", required: true,  demoFileUrl: "/assets/demo_excel/demo.xlsx", }
+      { name: "d_image",  type: "file", required: true,  demoFileUrl: "/assets/demo_excel/demo.csv", }
   
     ];
 
