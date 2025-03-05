@@ -353,7 +353,7 @@ if (field.type === 'file') {
      
       }}
     >
-      Download Excel
+      Download File
     </a>
   </div>
 )}
