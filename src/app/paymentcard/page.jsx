@@ -53,47 +53,47 @@ export default function PaymentCard() {
         for (const verificationType of verificationTypes) {
           let response;
           switch (verificationType) {
-            // case "PAN":
-            //   response = await axios.post("https://complex-verification-api.onrender.com/api/verify/varifyPAN", {
-            //     customer_pan_number: user.pan,
-            //     pan_holder_name: user.pan_holder_name,
-            //     userId: user._id,
-            //   });
-            //   console.log(`PAN Verification for ${user.full_name}:`, response.data);
+            case "PAN":
+              response = await axios.post("https://complex-verification-api.onrender.com/api/verify/varifyPAN", {
+                customer_pan_number: user.pan,
+                pan_holder_name: user.pan_holder_name,
+                userId: user._id,
+              });
+              console.log(`PAN Verification for ${user.full_name}:`, response.data);
            
-            //   break;
+              break;
   
-            // case "Aadhaar":
-            //   response = await axios.post("https://complex-verification-api.onrender.com/api/verify/verifyAadhaar", {
+            case "Aadhaar":
+              response = await axios.post("https://complex-verification-api.onrender.com/api/verify/verifyAadhaar", {
           
-            //     customer_aadhaar_number: user.aadhaar,
-            //     userId: user._id,
+                customer_aadhaar_number: user.aadhaar,
+                userId: user._id,
 
-            //   });
-            //   console.log(`Aadhaar Verification for ${user.full_name}:`, response.data);
-            //   break;
+              });
+              console.log(`Aadhaar Verification for ${user.full_name}:`, response.data);
+              break;
   
-            // case "EPIC":
-            //   response = await axios.post("https://complex-verification-api.onrender.com/api/verify/varifyEPIC", {
-            //     userId: user._id,
-            //     customer_epic_number: user.epic,
-            //     name_to_match: user.epic_holder_name,
+            case "EPIC":
+              response = await axios.post("https://complex-verification-api.onrender.com/api/verify/varifyEPIC", {
+                userId: user._id,
+                customer_epic_number: user.epic,
+                name_to_match: user.epic_holder_name,
        
-            //   });
-            //   console.log(`EPIC Verification for ${user.full_name}:`, response.data);
-            //   break;
+              });
+              console.log(`EPIC Verification for ${user.full_name}:`, response.data);
+              break;
   
-            // case "Driving Licence":
-            //   const formattedDOB = formatDOB(user.attendent_dob);
-            //   // console.log(formattedDOB);
-            //   response = await axios.post("https://complex-verification-api.onrender.com/api/verify/verifyDL", {
-            //     userId: user._id,
-            //     customer_dl_number: user.driving_licence,
-            //     name_to_match: user.driving_licence_holder_name,
-            //     customer_dob: formattedDOB,
-            //   });
-            //   console.log(`Driving Licence Verification for ${user.full_name}:`, response.data);
-            //   break;
+            case "Driving Licence":
+              const formattedDOB = formatDOB(user.attendent_dob);
+              // console.log(formattedDOB);
+              response = await axios.post("https://complex-verification-api.onrender.com/api/verify/verifyDL", {
+                userId: user._id,
+                customer_dl_number: user.driving_licence,
+                name_to_match: user.driving_licence_holder_name,
+                customer_dob: formattedDOB,
+              });
+              console.log(`Driving Licence Verification for ${user.full_name}:`, response.data);
+              break;
   
             default:
               console.warn(`Unknown verification type: ${verificationType}`);
