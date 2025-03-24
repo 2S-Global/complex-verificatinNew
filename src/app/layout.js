@@ -1,6 +1,6 @@
 
 import { Inter } from 'next/font/google';
-
+import { PaymentProvider } from "../app/context/PaymentContext";
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -22,7 +22,10 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/assets/css/style.css" />
       </head>
       <body className={inter.className}>
-        {children}
+        
+      <PaymentProvider>
+          {children}
+        </PaymentProvider>
         <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
         <script src="/assets/js/main.js" defer></script>
       </body>

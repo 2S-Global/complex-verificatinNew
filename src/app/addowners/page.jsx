@@ -32,7 +32,10 @@ export default function AddOwners() {
 
 
   return (
+    
     <Layout>
+
+
       <main id="main" className="main">
 <section className="section">
   <div className="row">
@@ -47,7 +50,9 @@ export default function AddOwners() {
           </div>
         ) : (
           <DynamicForm fields={fields} />
+          
         )}
+      
 
         </div>
       </div>

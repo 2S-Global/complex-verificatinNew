@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Places Autocomplete</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB02EyNgZIOtZ5dSlxVI0Tg76cjXFecg2Y&libraries=places"></script>
+</head>
+<body>
+
+    <h2>Google Places Autocomplete</h2>
+    <input id="autocomplete" type="text" placeholder="Enter location" style="width: 300px; padding: 10px;">
+    
+    <script>
+        function initAutocomplete() {
+            var input = document.getElementById("autocomplete");
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            
+            autocomplete.addListener("place_changed", function() {
+                var place = autocomplete.getPlace();
+                console.log("Selected Place:", place);
+            });
+        }
+        
+        // Initialize after page loads
+        window.onload = initAutocomplete;
+    </script>
+
+</body>
+</html>
